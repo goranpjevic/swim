@@ -1,0 +1,11 @@
+# swim
+cmd + alt - left : swim left
+cmd + alt - right : swim right
+cmd + alt - up : swim top
+cmd + alt - down : swim bottom
+cmd + ctrl - left : swim top-left
+cmd + ctrl - right : swim top-right
+cmd + ctrl + shift - right : swim bottom-right
+cmd + ctrl + shift - left : swim bottom-left
+cmd + alt - c : swim center
+cmd + alt - f : swim full
