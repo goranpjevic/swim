@@ -13,8 +13,8 @@ int main(int argc, char** argv) {
 	AXValueRef temp;
 	CGSize windowSize;
 	CGPoint windowPosition;
-	AXUIElementRef frontMostApp;
-	AXUIElementRef frontMostWindow;
+	AXUIElementRef focusedApp;
+	AXUIElementRef focusedWindow;
 	pid_t pid;
 	ProcessSerialNumber psn;
 	CGDirectDisplayID display;
@@ -22,16 +22,16 @@ int main(int argc, char** argv) {
 	/* get currently active window */
 	GetFrontProcess(&psn);
 	GetProcessPID(&psn, &pid);
-	frontMostApp = AXUIElementCreateApplication(pid);
-	AXUIElementCopyAttributeValue(frontMostApp, kAXFocusedWindowAttribute, (CFTypeRef *)&frontMostWindow);
+	focusedApp = AXUIElementCreateApplication(pid);
+	AXUIElementCopyAttributeValue(focusedApp, kAXFocusedWindowAttribute, (CFTypeRef *)&focusedWindow);
 
 	/* get active window size */
-	AXUIElementCopyAttributeValue(frontMostWindow, kAXSizeAttribute, (CFTypeRef *)&temp);
+	AXUIElementCopyAttributeValue(focusedWindow, kAXSizeAttribute, (CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGSizeType, &windowSize);
 	CFRelease(temp);
 
 	/* get active window position */
-	AXUIElementCopyAttributeValue(frontMostWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
+	AXUIElementCopyAttributeValue(focusedWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGPointType, &windowPosition);
 	CFRelease(temp);
 
@@ -75,16 +75,16 @@ int main(int argc, char** argv) {
 
 	/* reposition active window */
 	temp = AXValueCreate(kAXValueCGPointType, &windowPosition);
-	AXUIElementSetAttributeValue(frontMostWindow, kAXPositionAttribute, temp);
+	AXUIElementSetAttributeValue(focusedWindow, kAXPositionAttribute, temp);
 	CFRelease(temp);
 
 	/* resize active window */
 	temp = AXValueCreate(kAXValueCGSizeType, &windowSize);
-	AXUIElementSetAttributeValue(frontMostWindow, kAXSizeAttribute, temp);
+	AXUIElementSetAttributeValue(focusedWindow, kAXSizeAttribute, temp);
 	CFRelease(temp);
 
-	CFRelease(frontMostWindow);
-	CFRelease(frontMostApp);
+	CFRelease(focusedWindow);
+	CFRelease(focusedApp);
 
 	return 0;
 }
