@@ -23,15 +23,18 @@ int main(int argc, char** argv) {
 	GetFrontProcess(&psn);
 	GetProcessPID(&psn, &pid);
 	focusedApp = AXUIElementCreateApplication(pid);
-	AXUIElementCopyAttributeValue(focusedApp, kAXFocusedWindowAttribute, (CFTypeRef *)&focusedWindow);
+	AXUIElementCopyAttributeValue(focusedApp, kAXFocusedWindowAttribute,
+			(CFTypeRef *)&focusedWindow);
 
 	/* get active window size */
-	AXUIElementCopyAttributeValue(focusedWindow, kAXSizeAttribute, (CFTypeRef *)&temp);
+	AXUIElementCopyAttributeValue(focusedWindow, kAXSizeAttribute,
+			(CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGSizeType, &windowSize);
 	CFRelease(temp);
 
 	/* get active window position */
-	AXUIElementCopyAttributeValue(focusedWindow, kAXPositionAttribute, (CFTypeRef *)&temp);
+	AXUIElementCopyAttributeValue(focusedWindow, kAXPositionAttribute,
+			(CFTypeRef *)&temp);
 	AXValueGetValue(temp, kAXValueCGPointType, &windowPosition);
 	CFRelease(temp);
 
@@ -62,7 +65,8 @@ int main(int argc, char** argv) {
 	} else if (strcmp(position, "bottom-left") == 0) {
 		setWindow(0, displayHeight/2, displayWidth/2, displayHeight/2);
 	} else if (strcmp(position, "bottom-right") == 0) {
-		setWindow(displayWidth/2, displayHeight/2, displayWidth/2, displayHeight/2);
+		setWindow(displayWidth/2, displayHeight/2, displayWidth/2,
+				displayHeight/2);
 	} else if (strcmp(position, "center") == 0) {
 		setWindow((displayWidth/2)-(windowSize.width/2),
 				(displayHeight/2)-(windowSize.height/2),
