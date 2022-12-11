@@ -2,7 +2,7 @@
 
 simple macos window manager.
 
-swim enables moving and resizing windows in macos.
+each option allows moving and resizing the focused window.
 
 usage:
 
@@ -10,17 +10,17 @@ usage:
 
 available options:
 
-  - left:  move window to the left half of the screen
-  - right:  move window to the right half of the screen
-  - top:  move window to the top half of the screen
-  - bottom:  move window to the bottom half of the screen
-  - top-left:  move window to the top left quarter of the screen
-  - top-right:  move window to the top right quarter of the screen
-  - bottom-left:  move window to the bottom left quarter of the screen
-  - bottom-right:  move window to the bottom right quarter of the screen
-  - center:  move window to the center of the screen
-  - full:  make the window take up the whole screen
+  left         :  left half of the screen
+  right        :  right half of the screen
+  top          :  top half of the screen
+  bottom       :  bottom half of the screen
+  top-left     :  top left quarter of the screen
+  top-right    :  top right quarter of the screen
+  bottom-left  :  bottom left quarter of the screen
+  bottom-right :  bottom right quarter of the screen
+  center       :  center of the screen
+  full         :  full screen
 
-use a hotkey daemon (e.g. https://github.com/koekeishiya/skhd) to bind swim
+use a hotkey daemon (e.g. 'https://github.com/koekeishiya/skhd') to bind swim
 commands to keyboard shorcuts.  the 'skhdrc-example' file contains an example
 configuration for 'skhd'.
