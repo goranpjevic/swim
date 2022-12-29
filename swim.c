@@ -2,8 +2,8 @@
 
 #include <Carbon/Carbon.h>
 
-#define setWindow(win_pos, newX, newY, newWidth, newHeight) if\
-	(strcmp(position, win_pos) == 0) {\
+#define setWindow(win_pos, newX, newY, newWidth, newHeight)\
+	if (strcmp(position, win_pos) == 0) {\
 		windowPosition.x = newX;\
 		windowPosition.y = newY;\
 		windowSize.width = newWidth;\
