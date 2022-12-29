@@ -2,12 +2,13 @@
 
 #include <Carbon/Carbon.h>
 
-#define setWindow(newX, newY, newWidth, newHeight) {\
-	windowPosition.x = newX;\
-	windowPosition.y = newY;\
-	windowSize.width = newWidth;\
-	windowSize.height = newHeight;\
-}
+#define setWindow(win_pos, newX, newY, newWidth, newHeight) if\
+	(strcmp(position, win_pos) == 0) {\
+		windowPosition.x = newX;\
+		windowPosition.y = newY;\
+		windowSize.width = newWidth;\
+		windowSize.height = newHeight;\
+	}\
 
 int main(int argc, char** argv) {
 	AXValueRef temp;
@@ -50,30 +51,24 @@ int main(int argc, char** argv) {
 	char* position = argv[1];
 
 	/* check options and update the active window position and size */
-	if (strcmp(position, "left") == 0) {
-		setWindow(0, 0, displayWidth/2, displayHeight);
-	} else if (strcmp(position, "right") == 0) {
-		setWindow(displayWidth/2, 0, displayWidth/2, displayHeight);
-	} else if (strcmp(position, "top") == 0) {
-		setWindow(0, 0, displayWidth, displayHeight/2);
-	} else if (strcmp(position, "bottom") == 0) {
-		setWindow(0, displayHeight/2, displayWidth, displayHeight/2);
-	} else if (strcmp(position, "top-left") == 0) {
-		setWindow(0, 0, displayWidth/2, displayHeight/2);
-	} else if (strcmp(position, "top-right") == 0) {
-		setWindow(displayWidth/2, 0, displayWidth/2, displayHeight/2);
-	} else if (strcmp(position, "bottom-left") == 0) {
-		setWindow(0, displayHeight/2, displayWidth/2, displayHeight/2);
-	} else if (strcmp(position, "bottom-right") == 0) {
-		setWindow(displayWidth/2, displayHeight/2, displayWidth/2,
-				displayHeight/2);
-	} else if (strcmp(position, "center") == 0) {
-		setWindow((displayWidth/2)-(windowSize.width/2),
-				(displayHeight/2)-(windowSize.height/2),
-				windowSize.width, windowSize.height);
-	} else if (strcmp(position, "full") == 0) {
-		setWindow(0, 0, displayWidth, displayHeight);
-	} else {
+	setWindow("left", 0, 0, displayWidth/2, displayHeight)
+	else setWindow("right", displayWidth/2, 0, displayWidth/2,
+			displayHeight)
+	else setWindow("top", 0, 0, displayWidth, displayHeight/2)
+	else setWindow("bottom", 0, displayHeight/2, displayWidth,
+			displayHeight/2)
+	else setWindow("top-left", 0, 0, displayWidth/2, displayHeight/2)
+	else setWindow("top-right", displayWidth/2, 0, displayWidth/2,
+			displayHeight/2)
+	else setWindow("bottom-left", 0, displayHeight/2, displayWidth/2,
+			displayHeight/2)
+	else setWindow("bottom-right", displayWidth/2, displayHeight/2,
+			displayWidth/2, displayHeight/2)
+	else setWindow("center", (displayWidth/2)-(windowSize.width/2),
+			(displayHeight/2)-(windowSize.height/2),
+			windowSize.width, windowSize.height)
+	else setWindow("full", 0, 0, displayWidth, displayHeight)
+	else {
 		return 1;
 	}
 
